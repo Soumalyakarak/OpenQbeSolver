@@ -51,7 +51,7 @@ cd build
 cmake ..
 make
 ./rubiks_cube_solver
-
+```
 
 ##Future Scope
 
