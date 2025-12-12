@@ -5,11 +5,11 @@ A high-performance Rubik’s Cube solver written in modern **C++17**, featuring 
 
 This project demonstrates advanced topics in **Artificial Intelligence** such as:
 
-- ✔️ **Heuristic Search Algorithms (A\*, IDA\*)**
-- ✔️ **Creating & Using Pattern Databases (PDBs)**
-- ✔️ **State-space pruning**
-- ✔️ **Admissible heuristics**
-- ✔️ **Optimal solving under large branching factors**
+- **Heuristic Search Algorithms (A\*, IDA\*)**
+- **Creating & Using Pattern Databases (PDBs)**
+- **State-space pruning**
+- **Admissible heuristics**
+- **Optimal solving under large branching factors**
 
 ---
 
@@ -42,7 +42,7 @@ B B' B2 (Back)
 
 ---
 
-##Build Instructions
+### Build Instructions
 
 ### Build
 ```bash
@@ -53,7 +53,7 @@ make
 ./rubiks_cube_solver
 ```
 
-##Future Scope
+### Future Scope
 
 ### Real Cube Scanner Using OpenCV**
 Planned future feature:
