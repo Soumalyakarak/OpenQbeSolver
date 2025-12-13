@@ -42,7 +42,7 @@ B B' B2 (Back)
 
 ---
 
-### Build Instructions
+## Build Instructions
 
 ### Prepare the Pattern Database (PDB)
 
@@ -66,7 +66,9 @@ cmake ..
 make
 ./rubiks_cube_solver
 ```
-### Future Scope
+---
+
+## Future Scope
 
 ### Real Cube Scanner Using OpenCV**
 Planned future feature:
