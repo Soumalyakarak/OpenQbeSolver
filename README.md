@@ -44,6 +44,20 @@ B B' B2 (Back)
 
 ### Build Instructions
 
+### Prepare the Pattern Database (PDB)
+
+The Corner Pattern Database (PDB) file is crucial for the IDA* heuristic. Recruiters must ensure two conditions are met before running the solver:
+
+1.  **Adjust the PDB File Path (in Main Solver File)**
+    * **Action:** Open your main solver file (e.g., `main.cpp`).
+    * **Detail:** Change the hardcoded PDB file path (e.g., `string fileName = "/home/somu/..."`) to the exact location where the `cornerDepth5V1.txt` file will be stored/read from on your system.
+
+2.  **Adjust Generation Depth (in `CornerDBMaker.cpp`)**
+    * **Action:** Open the `CornerDBMaker.cpp` file within the `PatternDatabases` directory.
+    * **Detail:** Find the constant controlling the maximum BFS depth. The memory and time for generation are system-dependent. Start with a depth of **4 or 5**. All states not computed will be initialized with a value one greater than the max depth, serving as a valid **admissible heuristic**.
+
+---
+
 ### Build
 ```bash
 mkdir build
@@ -52,7 +66,6 @@ cmake ..
 make
 ./rubiks_cube_solver
 ```
-
 ### Future Scope
 
 ### Real Cube Scanner Using OpenCV**
