@@ -182,53 +182,83 @@ int main() {
 //
 
 // DFS Solver Testing __________________________________________________________________________________________
-//    RubiksCube3dArray cube;
-//    cube.print();
+    //   RubiksCube3dArray cube;
+    //   cube.print();
+      
+    //   vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(5);
+    //   for (auto move : shuffle_moves)
+    //       cout << cube.getMove(move) << " ";
+    //   cout << "\n";
+    //   cube.print();
 
-//    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(5);
-//    for (auto move: shuffle_moves) cout << cube.getMove(move) << " ";
-//    cout << "\n";
-//    cube.print();
+    //   auto start = std::chrono::high_resolution_clock::now();
+      
+    //   DFSSolver<RubiksCube3dArray, Hash3d> dfsSolver(cube, 6);
+    //   vector<RubiksCube::MOVE> solve_moves = dfsSolver.solve();
+      
+    //   auto end = std::chrono::high_resolution_clock::now();
+    //   auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+      
+    //   for (auto move : solve_moves)
+    //       cout << cube.getMove(move) << " ";
+    //   cout << "\n";
+    //   dfsSolver.rubiksCube.print();
+      
+    //   cout << "Time taken (DFS): " << duration.count() << " ms\n";
 
-//    DFSSolver<RubiksCube3dArray, Hash3d> dfsSolver(cube, 6);
-//    vector<RubiksCube::MOVE> solve_moves = dfsSolver.solve();
-
-//    for (auto move: solve_moves) cout << cube.getMove(move) << " ";
-//    cout << "\n";
-//    dfsSolver.rubiksCube.print();
 
 
 //BFS Solver -----------------------------------------------------------------------------------------------------
-//    RubiksCubeBitboard cube;
-//    cube.print();
-//
-//    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(6);
-//    for(auto move: shuffle_moves) cout << cube.getMove(move) << " ";
-//    cout << "\n";
-//    cube.print();
-//
-//    BFSSolver<RubiksCubeBitboard, HashBitboard> bfsSolver(cube);
-//    vector<RubiksCube::MOVE> solve_moves = bfsSolver.solve();
-//
-//    for(auto move: solve_moves) cout << cube.getMove(move) << " ";
-//    cout << "\n";
-//    bfsSolver.rubiksCube.print();
+    //   RubiksCubeBitboard cube;
+    //   cube.print();
+      
+    //   vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(6);
+    //   for (auto move : shuffle_moves)
+    //       cout << cube.getMove(move) << " ";
+    //   cout << "\n";
+    //   cube.print();
+      
+    //   auto start = std::chrono::high_resolution_clock::now();
+      
+    //   BFSSolver<RubiksCubeBitboard, HashBitboard> bfsSolver(cube);
+    //   vector<RubiksCube::MOVE> solve_moves = bfsSolver.solve();
+      
+    //   auto end = std::chrono::high_resolution_clock::now();
+    //   auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+      
+    //   for (auto move : solve_moves)
+    //       cout << cube.getMove(move) << " ";
+    //   cout << "\n";
+    //   bfsSolver.rubiksCube.print();
+      
+    //   cout << "Time taken (BFS): " << duration.count() << " ms\n";
+
 
 // IDDFS Solver ----------------------------------------------------------------------------------------------------
-//    RubiksCubeBitboard cube;
-//    cube.print();
-//
-//    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(7);
-//    for (auto move: shuffle_moves) cout << cube.getMove(move) << " ";
-//    cout << "\n";
-//    cube.print();
-//
-//    IDDFSSolver<RubiksCubeBitboard, HashBitboard> iddfsSolver(cube, 7);
-//    vector<RubiksCube::MOVE> solve_moves = iddfsSolver.solve();
-//
-//    for (auto move: solve_moves) cout << cube.getMove(move) << " ";
-//    cout << "\n";
-//    iddfsSolver.rubiksCube.print();
+    //   RubiksCubeBitboard cube;
+    //   cube.print();
+      
+    //   vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(7);
+    //   for (auto move : shuffle_moves)
+    //       cout << cube.getMove(move) << " ";
+    //   cout << "\n";
+    //   cube.print();
+      
+    //   auto start = std::chrono::high_resolution_clock::now();
+      
+    //   IDDFSSolver<RubiksCubeBitboard, HashBitboard> iddfsSolver(cube, 7);
+    //   vector<RubiksCube::MOVE> solve_moves = iddfsSolver.solve();
+      
+    //   auto end = std::chrono::high_resolution_clock::now();
+    //   auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+      
+    //   for (auto move : solve_moves)
+    //       cout << cube.getMove(move) << " ";
+    //   cout << "\n";
+    //   iddfsSolver.rubiksCube.print();
+      
+    //   cout << "Time taken (IDDFS): " << duration.count() << " ms\n";
+
 
 // IDA* SOLVER ---------------------------------------------------------------------------------------------------
 //    RubiksCubeBitboard cube;

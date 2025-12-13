@@ -42,6 +42,23 @@ B B' B2 (Back)
 
 ---
 
+## Solver Performance Comparison (Experimental)
+
+**System Note:**
+Timings were measured on a local machine. Exact values may vary depending on CPU load, cache, and OS scheduling.
+*Depth* indicates shuffle depth, not solution depth.
+
+### Timing Results
+
+| Solver | Shuffle Depth | Cube Representation | Time Taken |
+| :--- | :---: | :---: | :---: |
+| DFS | 5 | 3D Array | 3.6 s |
+| BFS | 6 | Bitboard | 13.9 s |
+| IDDFS | 6 | Bitboard | 69.7 s |
+| **IDA\* + PDB** | **7** | **Bitboard** | **1.2 s** |
+
+---
+
 ## Build Instructions
 
 ### Prepare the Pattern Database (PDB)
@@ -55,6 +72,15 @@ The Corner Pattern Database (PDB) file is crucial for the IDA* heuristic. Recrui
 2.  **Adjust Generation Depth (in `CornerDBMaker.cpp`)**
     * **Action:** Open the `CornerDBMaker.cpp` file within the `PatternDatabases` directory.
     * **Detail:** Find the constant controlling the maximum BFS depth. The memory and time for generation are system-dependent. Start with a depth of **4 or 5**. All states not computed will be initialized with a value one greater than the max depth, serving as a valid **admissible heuristic**.
+
+| Depth (moves) | Estimated States Explored (Upper Bound) | PDB Creation Time |
+| :-----------: | :-------------------------------------: | :---------------------: |
+| 4             | 43.25 K                                 | < 1 ms                  |
+| 5             | 577.36 K                                | < 1 ms                  |
+| 6             | 7.67 M                                  | ~2 ms                   |
+| 7             | 102.03 M                                | ~10 ms                  |
+| 8             | 1.35 B                                  | ~40 ms                  |
+| 9             | 18.05 B                                 | ~200 ms                 |
 
 ---
 
