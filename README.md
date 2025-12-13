@@ -52,10 +52,10 @@ Timings were measured on a local machine. Exact values may vary depending on CPU
 
 | Solver | Shuffle Depth | Cube Representation | Time Taken |
 | :--- | :---: | :---: | :---: |
-| DFS | 5 | 3D Array | 3.6 s |
+| DFS | 6 | 3D Array | 3.6 s |
 | BFS | 6 | Bitboard | 13.9 s |
-| IDDFS | 6 | Bitboard | 69.7 s |
-| **IDA\* + PDB** | **7** | **Bitboard** | **1.2 s** |
+| IDDFS | 7 | Bitboard | 69.7 s |
+| **IDA\* + PDB** | **13** | **Bitboard** | **1.2 s** |
 
 ---
 
