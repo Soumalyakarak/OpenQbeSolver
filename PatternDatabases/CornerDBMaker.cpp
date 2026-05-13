@@ -17,10 +17,9 @@ bool CornerDBMaker::bfsAndStore() {
     q.push(cube);
     cornerDB.setNumMoves(cube, 0);
     int curr_depth = 0;
-    while (!q.empty()) {
+    while (!q.empty() && curr_depth<5){
         int n = q.size();
-        curr_depth++;
-        if (curr_depth == 5) break;
+ 
         for (int counter = 0; counter < n; counter++) {
             RubiksCubeBitboard node = q.front();
             q.pop();
@@ -34,6 +33,7 @@ bool CornerDBMaker::bfsAndStore() {
                 node.invert(curr_move);
             }
         }
+        curr_depth++;
     }
 
     cornerDB.toFile(fileName);

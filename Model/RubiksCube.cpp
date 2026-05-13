@@ -158,7 +158,7 @@ RubiksCube &RubiksCube::invert(MOVE ind) {
 }
 
 void RubiksCube::print() const {
-    cout << "Rubik's Cube:\n\n";
+    // cout << "Rubik's Cube:\n\n";
 
     for (int row = 0; row <= 2; row++) {
         for (unsigned i = 0; i < 7; i++) cout << " ";
@@ -323,3 +323,61 @@ uint8_t RubiksCube::getCornerOrientation(uint8_t ind) const {
         return 2;
     } else return 0;
 }
+
+bool RubiksCube::hasValidColorCount() const {
+    map<COLOR, int> count;
+
+    for (int f = 0; f < 6; ++f) {
+        for (int r = 0; r < 3; ++r) {
+            for (int c = 0; c < 3; ++c) {
+                COLOR col = getColor(static_cast<FACE>(f), r, c);
+                count[col]++;
+            }
+        }
+    }
+
+    for (auto &kv : count) {
+        if (kv.first == COLOR::UNKNOWN) continue;
+        if (kv.second != 9) return false;
+    }
+    return true;
+}
+
+bool RubiksCube::hasValidCenters() const {
+    return
+        getColor(FACE::UP,    1, 1) == COLOR::WHITE  &&
+        getColor(FACE::LEFT,  1, 1) == COLOR::GREEN  &&
+        getColor(FACE::FRONT, 1, 1) == COLOR::RED    &&
+        getColor(FACE::RIGHT, 1, 1) == COLOR::BLUE   &&
+        getColor(FACE::BACK,  1, 1) == COLOR::ORANGE &&
+        getColor(FACE::DOWN,  1, 1) == COLOR::YELLOW;
+}
+
+bool RubiksCube::hasValidCornerOrientation() const {
+    int sum = 0;
+    for (int i = 0; i < 8; ++i) {
+        sum += getCornerOrientation(i);
+    }
+    return (sum % 3 == 0);
+}
+
+bool RubiksCube::isValidCube() const {
+    if (!hasValidColorCount()) {
+        cout << "Invalid cube: incorrect color counts\n";
+        return false;
+    }
+
+    if (!hasValidCenters()) {
+        cout << "Invalid cube: center colors do not match face order\n";
+        return false;
+    }
+
+    if (!hasValidCornerOrientation()) {
+        cout << "Invalid cube: corner orientation parity error\n";
+        return false;
+    }
+
+    return true;
+}
+
+

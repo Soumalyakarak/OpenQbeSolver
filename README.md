@@ -1,56 +1,72 @@
 # Rubik’s Cube Solver (C++17)
-### **Bitboard | 1D | 3D | Heuristic Search (A\*, IDA\*) | Pattern Database | Full 18-Move Support**
 
-A high-performance Rubik’s Cube solver written in modern **C++17**, featuring **heuristic search algorithms**, optimized cube representations, and a **Pattern Database** heuristic for extremely fast optimal solving.
+### Bitboard | 1D | 3D | Heuristic Search (IDA\*) | Pattern Database | Full 18-Move Support
 
-This project demonstrates advanced topics in **Artificial Intelligence** such as:
+A high-performance Rubik’s Cube solver written in modern **C++17**, featuring multiple cube representations, classical search algorithms, and an optimized **IDA\*** solver powered by a **Corner Pattern Database (PDB)** heuristic.
 
-- **Heuristic Search Algorithms (A\*, IDA\*)**
-- **Creating & Using Pattern Databases (PDBs)**
-- **State-space pruning**
-- **Admissible heuristics**
-- **Optimal solving under large branching factors**
+This project demonstrates several important concepts from:
 
----
-
-## Features
-
-### **AI & Heuristic Search**
-- **A\*** and **IDA\*** algorithms implemented
-- Uses **Corner Pattern Database** as an admissible heuristic  
-- Demonstrates AI concepts used in real search engines
-
-### Cube Representations
-- **3D Array model**
-- **1D Linear Array model**
-- **Bitboard model** (compact & extremely fast)
-
-### Solvers Implemented
-- DFS  
-- BFS  
-- IDDFS  
-- **IDA\*** (**Iterative Deepening A\***)
-
-### Move Support
-**All 18 face moves implemented:**
-U U' U2 (Up)
-D D' D2 (Down)
-L L' L2 (Left)
-R R' R2 (Right)
-F F' F2 (Front)
-B B' B2 (Back)
+- Artificial Intelligence
+- Heuristic Search
+- State Space Optimization
+- Admissible Heuristics
+- Graph Search Algorithms
+- Compact Data Representation
 
 ---
 
-## Solver Performance Comparison (Experimental)
+# Features
 
-**System Note:**
-Timings were measured on a local machine. Exact values may vary depending on CPU load, cache, and OS scheduling.
-*Depth* indicates shuffle depth, not solution depth.
+## AI & Heuristic Search
+- **IDA\*** (Iterative Deepening A\*)
+- Pattern Database heuristic
+- Admissible heuristic search
+- State-space pruning
+- Optimized search using precomputed states
 
-### Timing Results
+---
 
-| Solver | Shuffle Depth | Cube Representation | Time Taken |
+## Cube Representations
+Implemented multiple internal cube models:
+
+- **3D Array Representation**
+- **1D Linear Representation**
+- **Bitboard Representation** (fastest & memory efficient)
+
+---
+
+## Solvers Implemented
+- DFS
+- BFS
+- IDDFS
+- **IDA\*** + Pattern Database
+
+---
+
+## Move Support
+
+All standard **18 Rubik’s Cube moves** are implemented:
+
+```text
+U  U'  U2
+D  D'  D2
+L  L'  L2
+R  R'  R2
+F  F'  F2
+B  B'  B2
+```
+
+---
+
+# Solver Performance Comparison (Experimental)
+
+### System Note
+Benchmarks were measured locally.  
+Actual timings may vary depending on CPU, memory, cache usage, and operating system scheduling.
+
+*Depth refers to shuffle depth, not necessarily optimal solution depth.*
+
+| Solver | Shuffle Depth | Representation | Time Taken |
 | :--- | :---: | :---: | :---: |
 | DFS | 6 | 3D Array | 3.6 s |
 | BFS | 6 | Bitboard | 13.9 s |
@@ -59,48 +75,144 @@ Timings were measured on a local machine. Exact values may vary depending on CPU
 
 ---
 
-## Build Instructions
+# Clone and Build
 
-### Prepare the Pattern Database (PDB)
+## Clone Repository
 
-The Corner Pattern Database (PDB) file is crucial for the IDA* heuristic. Recruiters must ensure two conditions are met before running the solver:
-
-1.  **Adjust the PDB File Path (in Main Solver File)**
-    * **Action:** Open your main solver file (e.g., `main.cpp`).
-    * **Detail:** Change the hardcoded PDB file path (e.g., `string fileName = "/home/somu/..."`) to the exact location where the `cornerDepth5V1.txt` file will be stored/read from on your system.
-
-2.  **Adjust Generation Depth (in `CornerDBMaker.cpp`)**
-    * **Action:** Open the `CornerDBMaker.cpp` file within the `PatternDatabases` directory.
-    * **Detail:** Find the constant controlling the maximum BFS depth. The memory and time for generation are system-dependent. Start with a depth of **4 or 5**. All states not computed will be initialized with a value one greater than the max depth, serving as a valid **admissible heuristic**.
-
-| Depth (moves) | Estimated States Explored (Upper Bound) | PDB Creation Time |
-| :-----------: | :-------------------------------------: | :---------------------: |
-| 4             | 43.25 K                                 | < 1 ms                  |
-| 5             | 577.36 K                                | < 1 ms                  |
-| 6             | 7.67 M                                  | ~2 ms                   |
-| 7             | 102.03 M                                | ~10 ms                  |
-| 8             | 1.35 B                                  | ~40 ms                  |
-| 9             | 18.05 B                                 | ~200 ms                 |
+```bash
+git clone https://github.com/Soumalyakarak/OpenQbeSolver.git
+cd OpenQbeSolver
+```
 
 ---
 
-### Build
+## Build Project
+
 ```bash
 mkdir build
 cd build
 cmake ..
 make
-./rubiks_cube_solver
 ```
+
 ---
 
-## Future Scope
+## Run Solver
 
-### Real Cube Scanner Using OpenCV**
-Planned future feature:
+```bash
+./rubiks_cube_solver
+```
 
-- Scan a real Rubik’s Cube using your **webcam**
-- Detect sticker colors using OpenCV  
-- Convert into digital cube state  
-- Solve using IDA\*  
-- Display the solution step-by-step  
+---
+
+# How To Use
+
+The project is now organized into **separate clean sections** inside `main.cpp`.
+
+Each section is grouped and commented separately for:
+
+- Cube testing
+- Database creation
+- DFS testing
+- BFS testing
+- IDDFS testing
+- IDA\* testing
+- Scanner testing
+
+### Important
+Keep **only one section uncommented at a time** while testing.
+
+Example:
+
+```cpp
+// =========================================================
+// SECTION 6 : IDA* SOLVER TEST
+// =========================================================
+```
+
+This makes debugging and benchmarking much easier.
+
+---
+
+# Pattern Database (Optional)
+
+The project already includes a pre-generated:
+
+```text
+cornerDepth5V1.txt
+```
+
+So users can directly run the solver without generating the database again.
+
+---
+
+## Creating Corner Pattern Database (Optional)
+
+If you still want to generate your own Corner Pattern Database:
+
+1. Open `main.cpp`
+2. Uncomment only the **DATABASE CREATION SECTION**
+3. Run the program
+
+Example:
+
+```cpp
+CornerDBMaker dbMaker("cornerDepth5V1.txt", 0x99);
+dbMaker.bfsAndStore();
+```
+
+---
+
+## PDB Generation Notes
+
+Higher depths improve heuristic quality but increase preprocessing time and memory usage.
+
+| Depth | Estimated States |
+| :---: | :---: |
+| 4 | 43.25 K |
+| 5 | 577.36 K |
+| 6 | 7.67 M |
+| 7 | 102.03 M |
+| 8 | 1.35 B |
+
+---
+
+# Why IDA\* + Pattern Database?
+
+A normal brute-force search becomes impractical because the Rubik’s Cube has an enormous state space.
+
+Using:
+
+- IDA\*
+- Admissible heuristics
+- Pattern Databases
+
+allows the solver to drastically reduce explored states and solve cubes significantly faster.
+
+---
+
+# Future Scope
+
+## OpenCV Real Cube Scanner
+Planned feature:
+
+- Scan a real Rubik’s Cube using webcam
+- Detect sticker colors with OpenCV
+- Convert scanned colors into cube state
+- Solve digitally using IDA\*
+- Display move-by-move solution
+
+---
+
+# Technologies Used
+
+- C++17
+- STL
+- CMake
+- OpenCV (planned)
+
+---
+
+# Author
+
+Soumalya Karak  

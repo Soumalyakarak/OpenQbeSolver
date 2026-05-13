@@ -29,7 +29,8 @@ public:
         RED,
         BLUE,
         ORANGE,
-        YELLOW
+        YELLOW,
+        UNKNOWN
     };
 
     enum class MOVE {
@@ -49,6 +50,16 @@ public:
      * @param Face, row, and column index
      */
     virtual COLOR getColor(FACE face, unsigned row, unsigned col) const = 0;
+
+
+    /*
+     * Sets the color of the cell at (row, col) in the given face.
+     * If Rubik's Cube face is pointing at you, then the row numbering starts from the
+     * top to bottom, and column numbering starts from the left to right.
+     * The rows and columns are 0-indexed.
+     * @param Face, row, column and color.
+     */
+    virtual void setColor(FACE face, int row, int col, COLOR color) = 0;
 
     /*
      * Returns the first letter of the given COLOR
@@ -171,6 +182,32 @@ public:
     virtual RubiksCube &bPrime() = 0;
 
     virtual RubiksCube &b2() = 0;
+
+        /*
+     * Checks if the cube has exactly 9 stickers of each color.
+     */
+    bool hasValidColorCount() const;
+
+    /*
+     * Checks if center stickers match expected face colors.
+     * Assumes fixed face order:
+     * UP=WHITE, LEFT=GREEN, FRONT=RED,
+     * RIGHT=BLUE, BACK=ORANGE, DOWN=YELLOW
+     */
+    bool hasValidCenters() const;
+
+    /*
+     * High-level cube validity check before solving.
+     */
+    bool isValidCube() const;
+
+    /*
+    * Checks if corner orientations are physically valid.
+    * Sum of all corner orientations must be divisible by 3.
+    */
+    bool hasValidCornerOrientation() const;
+
+
 
     string getCornerColorString(uint8_t ind) const;
 

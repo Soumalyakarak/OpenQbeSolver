@@ -31,7 +31,10 @@ public:
     RubiksCubeBitboard();
 
     COLOR getColor(FACE face, unsigned row, unsigned col) const override;
+    void setColor(FACE face, int row, int col, COLOR color) override;
     bool isSolved() const override;
+
+    MOVE parseMove(const std::string &s);
 
     // Moves
     RubiksCube &u() override;

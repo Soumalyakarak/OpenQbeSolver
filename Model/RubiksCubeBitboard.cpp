@@ -49,10 +49,9 @@ int RubiksCubeBitboard::get5bitCorner(std::string corner) {
 }
 
 // ---------------- PUBLIC METHODS ----------------
-
 RubiksCubeBitboard::RubiksCubeBitboard() {
     for (int side = 0; side < 6; side++) {
-        uint64_t clr = 1ULL << side;
+        uint64_t clr = 1 << side;
         bitboard[side] = 0;
 
         for (int faceIdx = 0; faceIdx < 8; faceIdx++)
@@ -77,10 +76,49 @@ RubiksCube::COLOR RubiksCubeBitboard::getColor(FACE face, unsigned row, unsigned
     return (COLOR)(bit_pos - 1);
 }
 
+void RubiksCubeBitboard::setColor(FACE face, int row, int col, COLOR color) {
+    int idx = arr[row][col];
+    if (idx == 8) return;
+
+    bitboard[(int)face] &= ~(one_8 << (8 * idx));
+
+    uint64_t newColor = (1ULL << (int)color);
+    bitboard[(int)face] |= (newColor << (8 * idx));
+}
+
 bool RubiksCubeBitboard::isSolved() const {
     for (int i = 0; i < 6; i++)
         if (solved_side_config[i] != bitboard[i]) return false;
     return true;
+}
+
+RubiksCube::MOVE RubiksCubeBitboard::parseMove(const std::string &s) {
+
+    if (s == "U") return MOVE::U;
+    if (s == "U'") return MOVE::UPRIME;
+    if (s == "U2") return MOVE::U2;
+
+    if (s == "L") return MOVE::L;
+    if (s == "L'") return MOVE::LPRIME;
+    if (s == "L2") return MOVE::L2;
+
+    if (s == "F") return MOVE::F;
+    if (s == "F'") return MOVE::FPRIME;
+    if (s == "F2") return MOVE::F2;
+
+    if (s == "R") return MOVE::R;
+    if (s == "R'") return MOVE::RPRIME;
+    if (s == "R2") return MOVE::R2;
+
+    if (s == "B") return MOVE::B;
+    if (s == "B'") return MOVE::BPRIME;
+    if (s == "B2") return MOVE::B2;
+
+    if (s == "D") return MOVE::D;
+    if (s == "D'") return MOVE::DPRIME;
+    if (s == "D2") return MOVE::D2;
+
+    throw std::invalid_argument("Invalid move");
 }
 
 // ---------------- MOVES ----------------
